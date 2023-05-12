@@ -62,15 +62,18 @@ const phoneticText = searchResults && searchResults.phonetics && searchResults.p
         <img src="/logo.svg" alt="" />
         <Box sx={{ display: 'flex', flexDirection: 'row',gap:"10px", alignItems: 'center' }}>
           
-          <Select
-              value={font}
-              onChange={(event) => setFont(event.target.value)}
-              sx={{ color: toggleState ? 'white' : 'black' }}
-          >
-              <MenuItem value={'Sans Serif'}>Sans Serif</MenuItem>
-              <MenuItem value={'Serif'}>Serif</MenuItem>
-              <MenuItem value={'Mono'}>Mono</MenuItem>
-          </Select>
+        <Select
+          value={font}
+          onChange={(event) => setFont(event.target.value)}
+          sx={{
+            color: toggleState ? 'white' : 'black',
+            border: 'none',
+          }}
+        >
+          <MenuItem value={'Sans Serif'}>Sans Serif</MenuItem>
+          <MenuItem value={'Serif'}>Serif</MenuItem>
+          <MenuItem value={'Mono'}>Mono</MenuItem>
+        </Select>
           
           <Box sx={{ backgroundColor: '#E9E9E9', width: '1px', height: '32px' }} />
           <Switch checked={toggleState} onChange={handleToggle} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' }, '& .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track': { backgroundColor: 'black' } }} />
