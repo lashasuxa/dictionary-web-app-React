@@ -3,12 +3,13 @@ import { Input, Switch } from '@mui/material';
 import { Box,Button, List, ListItem, Typography } from '@mui/material';
 import { Select, MenuItem } from '@mui/material';
 import axios from 'axios';
+import './app.css'
 
 function App() {
   const [toggleState, setToggleState] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState(null);
-  const [font, setFont] = useState('Sans Serif');
+  const [font, setFont] = useState('Roboto, sans-serif');
 
 
 
@@ -44,10 +45,10 @@ const findAudioUrl = (phonetics) => {
   return null; // return null if no .mp3 audio URL is found
 };
 
-// This function will be called when the play button is clicked.
+
 const playAudio = () => {
   const audioUrl = findAudioUrl(searchResults.phonetics);
-  if (audioUrl) { // only try to play the audio if a .mp3 audio URL was found
+  if (audioUrl) { 
     const audio = new Audio(audioUrl);
     audio.play();
   }
@@ -70,11 +71,11 @@ const phoneticText = searchResults && searchResults.phonetics && searchResults.p
             border: 'none',
           }}
         >
-          <MenuItem value={'Sans Serif'}>Sans Serif</MenuItem>
-          <MenuItem value={'Serif'}>Serif</MenuItem>
-          <MenuItem value={'Mono'}>Mono</MenuItem>
+           <MenuItem value={'Roboto, sans-serif'}>Roboto</MenuItem>
+          <MenuItem value={'Open Sans, sans-serif'}>Open Sans</MenuItem>
+          <MenuItem value={'Monoton, cursive'}>Monoton</MenuItem>
         </Select>
-          
+       
           <Box sx={{ backgroundColor: '#E9E9E9', width: '1px', height: '32px' }} />
           <Switch checked={toggleState} onChange={handleToggle} sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: 'white' }, '& .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track': { backgroundColor: 'black' } }} />
           <img src="/icon-moon.svg" alt="" />
@@ -87,6 +88,7 @@ const phoneticText = searchResults && searchResults.phonetics && searchResults.p
         onChange={(event) => setSearchTerm(event.target.value)}
         placeholder="Search for a word"
         inputProps={{ style: { borderBottom: 'red' } }}
+        sx={{ backgroundColor: '#red'}}
       />
 
         <Button type='submit' >
@@ -94,7 +96,7 @@ const phoneticText = searchResults && searchResults.phonetics && searchResults.p
         </Button>
       </Box>
     
-       {searchResults ?( <Box className='main'>
+       {searchResults ?( <Box className='main' sx={{ fontFamily: font}}>
             <Box className="audio_container" sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:'54px'}}>
             <Box className="audio-left" sx={{display:'flex',flexDirection:'column'}}>
             <Typography 
